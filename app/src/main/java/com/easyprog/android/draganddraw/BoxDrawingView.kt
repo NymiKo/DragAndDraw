@@ -4,15 +4,24 @@ import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Paint
 import android.graphics.PointF
+import android.os.Build
+import android.os.Bundle
+import android.os.Parcelable
 import android.util.AttributeSet
 import android.util.Log
 import android.view.MotionEvent
 import android.view.View
+import androidx.core.os.bundleOf
 
-class BoxDrawingView(context: Context?, attrs: AttributeSet? = null): View(context, attrs) {
+class BoxDrawingView(context: Context?, attrs: AttributeSet? = null) : View(context, attrs) {
+
+    companion object {
+        private const val KEY_BOXEN = "boxen"
+        private const val KEY_STATE = "state"
+    }
 
     private var currentBox: Box? = null
-    private val boxen = mutableListOf<Box>()
+    private var boxen = mutableListOf<Box>()
     private val boxPaint = Paint().apply {
         color = 0x22ff0000
     }
@@ -23,7 +32,7 @@ class BoxDrawingView(context: Context?, attrs: AttributeSet? = null): View(conte
     override fun onTouchEvent(event: MotionEvent): Boolean {
         val current = PointF(event.x, event.y)
         var action = ""
-        when(event.action) {
+        when (event.action) {
             MotionEvent.ACTION_DOWN -> {
                 action = "ACTION_DOWN"
                 currentBox = Box(current).also {
@@ -62,5 +71,25 @@ class BoxDrawingView(context: Context?, attrs: AttributeSet? = null): View(conte
         boxen.forEach { box ->
             canvas.drawRect(box.left, box.top, box.right, box.bottom, boxPaint)
         }
+    }
+
+    override fun onSaveInstanceState(): Parcelable {
+        return bundleOf().apply {
+            putParcelableArrayList(KEY_BOXEN, ArrayList<Parcelable>(boxen))
+            putParcelable(KEY_STATE, super.onSaveInstanceState())
+        }
+    }
+
+    override fun onRestoreInstanceState(state: Parcelable?) {
+        if (state is Bundle) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                boxen = state.getParcelableArrayList(KEY_BOXEN, Box::class.java)?.toMutableList() ?: mutableListOf()
+                super.onRestoreInstanceState(state.getParcelable(KEY_STATE, Parcelable::class.java))
+            } else {
+                boxen = state.getParcelableArrayList<Box>(KEY_BOXEN)?.toMutableList() ?: mutableListOf()
+                super.onRestoreInstanceState(state.getParcelable(KEY_STATE))
+            }
+        }
+        Log.e("BOXEN", boxen.toString())
     }
 }
