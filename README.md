@@ -1,2 +1,4 @@
 # DragAndDraw
 You can draw rectangles in the application. Made according to the book "Android for professionals 4th edition".
+
+  <img src="https://s230vla.storage.yandex.net/rdisk/7a527f3fa075ec66827773f6537a7fbdc23e135842751f6aa36529a58fb94f53/6419f5e9/qvUn5rdetz4fKZdBAuen6mUGKHlWTeXmZ8mwFWPl2oJtYKDdbM4ANvVg02VDUiPa49eihNMW1IvrcSgRHGO7og==?uid=412389636&filename=DragAndDrawAnimation.gif&disposition=inline&hash=&limit=0&content_type=image%2Fgif&owner_uid=412389636&fsize=312819&hid=9d66095728920508b2700402522407cf&media_type=image&tknv=v2&etag=4a99ab6d644fc31b35ed47f0ad81e6cd&rtoken=eRN9OdiWDx6o&force_default=yes&ycrid=na-7204bd7246f0f9e563b1a6caeb5bf8aa-downloader23e&ts=5f76d208a8c40&s=ab27b2b047c573beb20ab08fbfd0926ab737ee0b017af7a7bf3b3eda8b232ba5&pb=U2FsdGVkX19smJDKD0FoKkQL08c9jpUu92rSIHVMxmlHulh40G1LtkfPHAmF-ZzldCnkCXUB_FQhUWVOOz5iTtnd9A9rMKzNldLnmN9RkWI" width="250" height="540">
